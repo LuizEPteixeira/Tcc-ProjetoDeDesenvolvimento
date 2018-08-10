@@ -6,23 +6,7 @@ description: >-
 
 # Documento de Arquitetura
 
-## Representação da Arquitetura
+{% page-ref page="representacao-da-arquitetura.md" %}
 
-O modelo de arquitetura adotado foi XXX \(MVC, MVP, MVVM, ...\)
-
-Explicar a lógica entre as camadas
-
-* A
-* B
-* C
-* D
-
-![Arquitetura da Solu&#xE7;&#xE3;o](.gitbook/assets/image.png)
-
-Explicar as abstrações das camadas
-
-  
-
-
-
+{% page-ref page="planejamento-da-release.md" %}
 

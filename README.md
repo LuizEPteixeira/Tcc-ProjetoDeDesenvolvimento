@@ -6,7 +6,7 @@ description: >-
 
 # Documento de Arquitetura
 
-{% page-ref page="representacao-da-arquitetura.md" %}
+## [Representação da Arquitetura](representacao-da-arquitetura.md) 
 
-{% page-ref page="planejamento-da-release.md" %}
+## [Planejamento da Release](planejamento-da-release.md)
 

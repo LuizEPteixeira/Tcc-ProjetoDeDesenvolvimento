@@ -10,7 +10,7 @@ Esse documento tem como objetivo apresentar e descrever o projeto final, fornece
 
 ## [Desenvolvimento da Solução](desenvolvimento-da-solucao.md)
 
-## [Testes](testes.md)
+## [Testes e Validação](testes.md)
 
 ## [POSTMORTEM](postmortem.md)
 

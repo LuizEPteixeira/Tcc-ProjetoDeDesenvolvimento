@@ -2,7 +2,5 @@
 
 ## Protótipos de Alta Fidelidade
 
-## Validação
-
 
 

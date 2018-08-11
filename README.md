@@ -1,10 +1,6 @@
----
-description: >-
-  Esse documento tem como objetivo apresentar e descrever a arquitetura do
-  projeto final, fornecendo informações sobre as decisões arquiteturais
----
-
 # Documento de Arquitetura
+
+Esse documento tem como objetivo apresentar e descrever o projeto final, fornecendo informações e artefatos sobre a concepção do produto, o seu planejamento, as decisões arquiteturais, desenvolvimento, testes e conclusões.
 
 ## [Canvas do Produto](canvas-do-produto.md)
 

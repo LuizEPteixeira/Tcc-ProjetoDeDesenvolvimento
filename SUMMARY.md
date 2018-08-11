@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Documento de Arquitetura](README.md)
+* [Documentação e Artefatos](README.md)
 * [Canvas do Produto](canvas-do-produto.md)
 * [Planejamento da Release](planejamento-da-release.md)
 * [Representação da Arquitetura](representacao-da-arquitetura.md)

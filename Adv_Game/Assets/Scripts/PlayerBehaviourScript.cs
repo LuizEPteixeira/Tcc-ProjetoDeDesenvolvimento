@@ -7,27 +7,38 @@ public class PlayerBehaviourScript : MonoBehaviour {
     private Rigidbody2D rb;
     private Transform tr;
     private Animator an;
-    public Transform verificaChao;
-    public Transform verificaParede;
-    
+
+    [Header("Verificadores")]
+    [SerializeField] private Transform verificaChao;
+    [SerializeField] private Transform verificaParede;
+    [SerializeField] private Transform player;
+    [SerializeField] private Transform respawnPoint;
+
     private bool estaAndando;
     private bool estaNoChao;
     private bool estaNaParede;
     private bool estaVivo;
     private bool viradoParaDireita;
+    private bool pulo;
     private bool duploPulo;
-
     private float axis;
+
+    [Header("Jogador")]
     public float velocidade;
     public float forcaPulo;
     public float raioValidaChao;
     public float raioValidaParede;
+    public Joystick joystick;
+    public FixedButton jumpButton;
 
+    [Header("Layers")]
     public LayerMask solido;
-              
-    
+    public LayerMask water;
+    public LayerMask enemy;
+
+
     // Use this for initialization
-	void Start () {
+    void Start () {
 
         rb = GetComponent<Rigidbody2D>();
         tr = GetComponent<Transform>();
@@ -35,6 +46,8 @@ public class PlayerBehaviourScript : MonoBehaviour {
 
         estaVivo = true;
         viradoParaDireita = true;
+
+        player.transform.position = respawnPoint.transform.position;
     }
 	
 	// Update is called once per frame
@@ -47,7 +60,8 @@ public class PlayerBehaviourScript : MonoBehaviour {
         {
             
 
-            axis = Input.GetAxisRaw("Horizontal");
+            axis = joystick.Horizontal;
+            pulo = jumpButton.Pressed;
 
             estaAndando = Mathf.Abs(axis) > 0f;
 
@@ -56,22 +70,30 @@ public class PlayerBehaviourScript : MonoBehaviour {
             else if (axis < 0f && viradoParaDireita)
                 Flip();
 
-            if (Input.GetButtonDown("Jump") && estaNoChao)
+            if (pulo && estaNoChao)
             {
                 rb.AddForce(tr.up * forcaPulo);
                 duploPulo = true;
+                
             }
                 
-            else if(Input.GetButtonDown("Jump") && !estaNoChao && duploPulo)
+            else if(pulo && !estaNoChao && duploPulo)
             {
+                rb.velocity = new Vector2(rb.velocity.x, 0f);
                 rb.AddForce(tr.up * forcaPulo);
                 duploPulo = false;
             }
 
 
+            if (rb.IsTouchingLayers(water) || rb.IsTouchingLayers(enemy))
+            {
+                PlayerDie();
+                
+            }
             
             
-            Animations();
+            PlayerAnimations();
+            
 
         }
 
@@ -105,10 +127,38 @@ public class PlayerBehaviourScript : MonoBehaviour {
     }
 
 
-    void Animations()
+    void PlayerDie()
     {
-        an.SetBool("Andando", (estaNoChao && estaAndando));
-        an.SetBool("Pulando", !estaNoChao);
+
+        estaVivo = false;
+        StartCoroutine("TimeWaitDeath");
+    }
+
+
+
+    IEnumerator TimeWaitDeath()
+    {
+        
+        yield return new WaitForSecondsRealtime(0.5f);
+        Reviver();
+
+    }
+
+
+    void Reviver()
+    {
+
+        player.transform.position = respawnPoint.transform.position;
+        an.Rebind();
+        estaVivo = true;
+
+    }
+
+
+    void PlayerAnimations()
+    {
+        an.SetBool("Andando", (estaNoChao && estaAndando && estaVivo));
+        an.SetBool("Pulando", (!estaNoChao && estaVivo));
         an.SetFloat("VelVertical", rb.velocity.y);
         an.SetBool("Morrendo", !estaVivo);
     }

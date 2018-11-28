@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.2.1" name="Fase2" tilewidth="128" tileheight="128" tilecount="19" columns="0">
+<tileset version="1.2" tiledversion="1.2.0" name="Fase2" tilewidth="128" tileheight="128" tilecount="19" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <image width="128" height="128" source="1.png"/>
@@ -51,11 +51,17 @@
  </tile>
  <tile id="16">
   <image width="128" height="128" source="Blue.png"/>
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="128" height="128"/>
+  </objectgroup>
  </tile>
  <tile id="17">
   <image width="128" height="128" source="Chest.PNG"/>
  </tile>
  <tile id="18">
   <image width="128" height="128" source="Red.png"/>
+  <objectgroup draworder="index">
+   <object id="1" x="0" y="0" width="128" height="128"/>
+  </objectgroup>
  </tile>
 </tileset>

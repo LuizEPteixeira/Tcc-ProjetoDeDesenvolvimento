@@ -1,15 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TerminarFase : MonoBehaviour {
 
     private Rigidbody2D rb;
 
     [Header("Verificadores")]
-    [SerializeField] private Transform player;
-    [SerializeField] private Transform respawnPoint;
     [SerializeField] private LayerMask finalFase;
+    [SerializeField] private string levelLoad;
 
 
     // Use this for initialization
@@ -27,7 +27,8 @@ public class TerminarFase : MonoBehaviour {
 
         if (rb.IsTouchingLayers(finalFase))
         {
-            player.transform.position = respawnPoint.transform.position;
+            
+            SceneManager.LoadScene(levelLoad);
         }
 
 

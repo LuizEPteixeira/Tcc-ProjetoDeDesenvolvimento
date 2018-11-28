@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class FixedButton : MonoBehaviour, IPointerClickHandler
+public class FixedButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
 
     [HideInInspector]
@@ -18,19 +18,19 @@ public class FixedButton : MonoBehaviour, IPointerClickHandler
 	// Update is called once per frame
 	void FixedUpdate () {
 
-        if (Pressed){
-
+        if (Pressed)
             Pressed = false;
-
-        }
-            
-            
-		
+        
 	}
-
     
-    public void OnPointerClick(PointerEventData eventData)
+
+    public void OnPointerDown(PointerEventData eventData)
     {
         Pressed = true;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        Pressed = false;
     }
 }
